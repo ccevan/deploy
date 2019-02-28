@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="fc0ac286-db33-499f-a53f-f5ed24f31f17" name="ceshi" url="http://172.16.102.70">
+        <fileTransfer host="172.16.102.70" port="22" rootFolder="/home/soyuan/Desktop/www" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="34ebf073-c37d-4002-becb-7c6b9bb9f9cd" name="server" url="http://172.16.101.59">
+        <fileTransfer host="172.16.101.59" port="22" rootFolder="/home/soyuan/Desktop/deploy" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

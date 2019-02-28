@@ -1,0 +1,32 @@
+{
+  "project_name": "test3",
+  "project_instruction":"项目说明 hahahaha这是项目说明",
+  "services": [
+    {
+      "service_name": "Haze-Removal2",
+      "service_instruction": "服务说明haf",
+      "version_number": "v1.0",
+      "version_instruction" : "版本说明,没什么可说的",
+      "version_path" : "test3/Haze-Removal)",
+      "remote_path": "/opt/",
+      "config_path" : "test3/Haze-Removal/HazeRemoval.py",
+      "configurations" : [
+        {
+          "config_name" : "redis_ip"
+        },
+        {
+          "config_name" : "rtsp_ip"
+
+        }
+      ],
+      "relys" : [
+        {
+          "service_name": "流媒体",
+          "version_number" : "v1.2"
+        },
+        
+      ]
+
+    }
+  ]
+}
