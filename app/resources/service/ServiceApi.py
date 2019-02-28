@@ -68,10 +68,11 @@ def upload_files():
                         version_path = service_info.get("version_path")
                         remote_path = service_info.get("remote_path")
                         config_path = service_info.get("config_path")
-                        logger.error([service_obj.service_name for service_obj in proj_first.services])
-                        if service_name not in [service_obj.service_name for service_obj in proj_first.services]:
+                        service_obj_list = [service_obj for service_obj in proj_first.services if service_obj.service_name == service_name]
+                        # logger.error([service_obj.service_name for service_obj in proj_first.services])
+                        if not service_obj_list:
                             # 项目中添加新服务
-                            logger.error("执行")
+                            # logger.error("执行")
                             service_param_info = {
                                 "service_name": service_name,
                                 "service_instruction": service_instruction,
@@ -111,6 +112,9 @@ def upload_files():
                                 dependency_obj = Dependency(**rely_param_info)
                                 db.session.add(dependency_obj)
                             continue
+                        # else:  # 服务存在更新服务信息
+                        #     service_obj = service_obj_list[0]
+
                         search_param = {
                             "is_delete": False,
                             "service_name": service_name
@@ -223,7 +227,7 @@ def upload_files():
 
 
 @service.route("/project", methods=["POST"])
-def ShowProgram():
+def project():
     """
     查询所有项目信息
     :return:
@@ -355,4 +359,199 @@ def delete_project():
         msg = "删除项目出错"
     return response_tem(code=code, msg=msg)
 
+
+@service.route("/project_detail", methods=["POST"])
+def project_detail():
+    """
+    根据项目id查看项目详情,项目说明以及项目包含的服务等
+    :return:
+    """
+    json_data = return_json(request)
+    project_id = json_data.get("project_id", None)
+    if not project_id:
+        code = -1
+        msg = "project_id is required"
+        return response_tem(code=code, msg=msg)
+    all_info = []
+    try:
+        search_param = {
+            "is_delete": False,
+            "id": project_id
+        }
+        proj_obj = Project.query.filter_by(**search_param).first()
+        if not proj_obj:
+            code = -1
+            msg = "查询失败, 该项目不存在或已被删除"
+            return response_tem(code=code, msg=msg)
+        project_name = proj_obj.project_name
+        all_service_obj = proj_obj.services
+        all_service_obj = [service for service in all_service_obj if service.is_delete == False]
+        service_info_list = []
+        for service_obj in all_service_obj:
+            service_info = {
+                "service_id": service_obj.id,
+                "service_name": service_obj.service_name,
+                "service_instruction": service_obj.service_instruction
+            }
+            service_info_list.append(service_info)
+        proj_info = {
+            "project_name": project_name,
+            "service_info": service_info_list
+        }
+        all_info.append(proj_info)
+        code = 0
+        msg = "查询成功"
+    except Exception as e:
+        logger.error(e)
+        code = -1
+        msg = "查询失败"
+    return response_tem(code=code, msg=msg, data=all_info)
+
+
+@service.route("/service_detail", methods=["POST"])
+def service_detail():
+    """
+    根据服务id查询服务详细信息, 服务的运行情况和依赖服务信息等
+    :return:
+    """
+    json_data = return_json(request)
+    service_id = json_data.get("service_id", None)
+    if not service_id:
+        code = -1
+        msg = "service_id is required"
+        return response_tem(code=code, msg=msg)
+    all_info = []
+    try:
+        search_param = {
+            "is_delete": False,
+            "id": service_id
+        }
+        service_obj = Service.query.filter_by(**search_param).first()
+        if not service_obj:
+            code = -1
+            msg = "查询失败, 该服务不存在或已被删除"
+            return response_tem(code=code, msg=msg)
+        service_instruction = service_obj.service_instruction
+        service_name = service_obj.service_name
+        all_version_obj = service_obj.versions
+        all_version_obj = [version for version in all_version_obj if version.is_delete == False]
+        service_info_list = []
+        rely_info_list = []
+        for version_obj in all_version_obj:
+            all_rel_obj = version_obj.servers
+            all_rel_obj = [rel for rel in all_rel_obj if rel.status == 1]
+            if all_rel_obj:
+                version_number = version_obj.version_number
+                for rel in all_rel_obj:
+                    rel_info = {
+                        "service_name": service_name,
+                        "server_ip": rel.server.ip,
+                        "server_name": rel.server.name,
+                        "status": rel.status,
+                        "version_number": version_number
+                    }
+                    service_info_list.append(rel_info)
+        all_rely_obj = service_obj.dependencys
+        all_rely_obj = [rely for rely in all_rely_obj if rely.is_delete == False]
+        for rely_obj in all_rely_obj:
+            dependency_name = rely_obj.dependency_name
+            version_number = rely_obj.version_number
+            search_param = {
+                "is_delete": False,
+                "service_name": dependency_name
+            }
+            dep_service = Service.query.filter_by(**search_param).first()  # 依赖服务对象
+            if not dep_service:
+                rely_info = {
+                    "service_name": dependency_name,
+                    "status": 0,
+                    "version_number": version_number
+                }
+                rely_info_list.append(rely_info)
+                continue
+            all_dep_version = dep_service.versions
+            dep_version_list = [version for version in all_dep_version if version.version_number == version_number]
+            if dep_version_list:  # 依赖的版本存在
+                dep_version = dep_version_list[0]
+                all_dep_rel = dep_version.servers
+                all_dep_rel = [rel for rel in all_dep_rel if rel.status == 1]
+                if all_dep_rel:  #存在正在执行的版本
+                    for rel in all_dep_rel:
+                        rely_info = {
+                        "service_name": dependency_name,
+                        "server_ip": rel.server.ip,
+                        "server_name": rel.server.name,
+                        "status": rel.status,
+                        "version_number": version_number
+                    }
+                        rely_info_list.append(rely_info)
+                else:  # 该本版未执行
+                    rely_info = {
+                        "service_name": dependency_name,
+                        "status": 0,
+                        "version_number": version_number
+                    }
+                    rely_info_list.append(rely_info)
+
+            else:  # 依赖版本不存在
+                rely_info = {
+                    "service_name": dependency_name,
+                    "status": 0,
+                    "version_number": version_number
+                }
+                rely_info_list.append(rely_info)
+        info = {
+            "service_instruction": service_instruction,
+            "service_info": service_info_list,
+            "rely_info": rely_info_list
+        }
+        all_info.append(info)
+        code = 0
+        msg = "查询成功"
+    except Exception as e:
+        logger.error(e)
+        code = -1
+        msg = "查询失败"
+    return response_tem(code=code, msg=msg, data=all_info)
+
+
+@service.route("/version", methods=["POST"])
+def version():
+    """
+    根据服务id获取该服务所有有效版本号
+    :return:
+    """
+    json_data = return_json(request)
+    service_id = json_data.get("service_id", None)
+    if not service_id:
+        code = -1
+        msg = "service_id is required"
+        return response_tem(code=code, msg=msg)
+    all_info = []
+    try:
+        search_param = {
+            "is_delete": False,
+            "id": service_id
+        }
+        service_obj = Service.query.filter_by(**search_param).first()
+        if not service_obj:
+            code = -1
+            msg = "查询失败, 该服务不存在或已被删除"
+            return response_tem(code=code, msg=msg)
+        all_version_obj = service_obj.versions
+        all_version_obj = [version for version in all_version_obj if version.is_delete == False]
+        for version_obj in all_version_obj:
+            version_info = {
+                "version_id": version_obj.id,
+                "version_number": version_obj.version_number,
+                "version_instruction": version_obj.version_instruction
+            }
+            all_info.append(version_info)
+        code = 0
+        msg = "查询成功"
+    except Exception as e:
+        logger.error(e)
+        code = -1
+        msg = "查询失败"
+    return response_tem(code=code, msg=msg, data=all_info)
 

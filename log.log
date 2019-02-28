@@ -1,0 +1,69 @@
+2019-01-21T14:32:12 ERROR ServerApi.py 47 26309 'video' is an invalid keyword argument for Server
+2019-01-24T10:13:18 ERROR ServerApi.py 442 6973 Authentication failed.
+2019-01-24T16:49:25 ERROR listenRedis.py 24 27760 Error 111 connecting to 172.16.120.224:6379. Connection refused.
+2019-01-24T18:36:37 ERROR ServerApi.py 468 30231 /home/ingin/Desktop/Soyuan.SysDeployService/app/server_folder/UMSCore_v1.1.0/UMSCore/appsettings.json找不到配置文件
+2019-02-27T18:05:54 ERROR ServiceApi.py 191 23015 [Errno 2] No such file or directory: '/home/ingin/Desktop/Soyuan.SysDeployService/app/server_folder/2019_02_27_18_05_54/test3.zip'
+2019-02-27T18:08:28 ERROR ServiceApi.py 191 23347 [Errno 2] No such file or directory: '/home/ingin/Desktop/Soyuan.SysDeployService/app/server_folder/2019_02_27_18_08_28/test3/app.json'
+2019-02-27T18:15:05 ERROR ServiceApi.py 191 23652 [Errno 2] No such file or directory: '/home/ingin/Desktop/Soyuan.SysDeployService/app/server_folder/2019_02_27_18_15_05/test3/app.json'
+2019-02-27T18:25:28 ERROR ServiceApi.py 62 24011 proj_name: <Project 89e5307c7d8f4720baeb8a253f1e1faf>
+2019-02-27T18:25:28 ERROR ServiceApi.py 72 24011 ['Haze-Removal']
+2019-02-27T18:27:42 ERROR ServiceApi.py 62 24090 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:27:42 ERROR ServiceApi.py 72 24090 ['Haze-Removal']
+2019-02-27T18:31:35 ERROR ServiceApi.py 62 24896 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:31:35 ERROR ServiceApi.py 72 24896 ['Haze-Removal']
+2019-02-27T18:33:30 ERROR ServiceApi.py 62 24896 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:33:30 ERROR ServiceApi.py 72 24896 ['Haze-Removal']
+2019-02-27T18:35:17 ERROR ServiceApi.py 62 24896 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:35:17 ERROR ServiceApi.py 72 24896 ['Haze-Removal']
+2019-02-27T18:35:17 ERROR ServiceApi.py 75 24896 执行
+2019-02-27T18:35:17 ERROR ServiceApi.py 195 24896 'NoneType' object has no attribute 'versions'
+2019-02-27T18:51:04 ERROR ServiceApi.py 62 27809 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:51:04 ERROR ServiceApi.py 72 27809 ['Haze-Removal']
+2019-02-27T18:51:04 ERROR ServiceApi.py 75 27809 执行
+2019-02-27T18:51:04 ERROR ServiceApi.py 120 27809 hh: None
+2019-02-27T18:51:27 ERROR ServiceApi.py 62 27809 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:51:27 ERROR ServiceApi.py 72 27809 ['Haze-Removal', 'Haze-Removal2']
+2019-02-27T18:51:27 ERROR ServiceApi.py 120 27809 hh: <File 'd6c0e37470d64d09b1f78b05154cfc0f'>
+2019-02-27T18:57:31 ERROR ServiceApi.py 62 27995 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:57:31 ERROR ServiceApi.py 72 27995 ['Haze-Removal', 'Haze-Removal2']
+2019-02-27T18:57:31 ERROR ServiceApi.py 120 27995 hh: <Service 'd6c0e37470d64d09b1f78b05154cfc0f'>
+2019-02-27T18:58:55 ERROR ServiceApi.py 62 27995 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:58:55 ERROR ServiceApi.py 72 27995 ['Haze-Removal', 'Haze-Removal2']
+2019-02-27T18:58:55 ERROR ServiceApi.py 75 27995 执行
+2019-02-27T18:59:12 ERROR ServiceApi.py 62 27995 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T18:59:12 ERROR ServiceApi.py 72 27995 ['Haze-Removal', 'Haze-Removal3', 'Haze-Removal2']
+2019-02-27T18:59:12 ERROR ServiceApi.py 120 27995 hh: <Service 'ca90402a1d5e491d841d7c7af9b9eb1e'>
+2019-02-27T19:01:42 ERROR ServiceApi.py 62 28224 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T19:01:42 ERROR ServiceApi.py 72 28224 ['Haze-Removal', 'Haze-Removal3', 'Haze-Removal2']
+2019-02-27T19:01:42 ERROR ServiceApi.py 120 28224 hh: <Service 'ca90402a1d5e491d841d7c7af9b9eb1e'>
+2019-02-27T19:01:42 ERROR ServiceApi.py 121 28224 SELECT tbversion.create_time AS tbversion_create_time, tbversion.update_time AS tbversion_update_time, tbversion.is_delete AS tbversion_is_delete, tbversion.id AS tbversion_id, tbversion.version_number AS tbversion_version_number, tbversion.version_instruction AS tbversion_version_instruction, tbversion.config_path AS tbversion_config_path, tbversion.version_path AS tbversion_version_path, tbversion.service_id AS tbversion_service_id 
+FROM tbversion 
+WHERE %(param_1)s = tbversion.service_id
+2019-02-27T19:03:18 ERROR ServiceApi.py 62 28280 proj_name: <Project 09ef39d00de144b68a1c83cdcc14a317>
+2019-02-27T19:03:18 ERROR ServiceApi.py 72 28280 ['Haze-Removal', 'Haze-Removal3', 'Haze-Removal2']
+2019-02-27T19:03:18 ERROR ServiceApi.py 120 28280 hh: <Service 'ca90402a1d5e491d841d7c7af9b9eb1e'>
+2019-02-27T19:03:18 ERROR ServiceApi.py 121 28280 ['v1.0']
+2019-02-28T11:39:55 ERROR ServiceApi.py 316 16402 service: [<Service '024c9d8fc0524ff893470987667d6e4d'>, <Service 'ca90402a1d5e491d841d7c7af9b9eb1e'>, <Service 'd6c0e37470d64d09b1f78b05154cfc0f'>]
+2019-02-28T11:39:55 ERROR ServiceApi.py 321 16402 version: [<Version 35ab759266064ff68554ef58aba714e2>]
+2019-02-28T11:39:55 ERROR ServiceApi.py 321 16402 version: [<Version bfbc0d469cb142859a7f2c1aaae58875>]
+2019-02-28T11:39:55 ERROR ServiceApi.py 321 16402 version: [<Version 5130b7edd26d42b88ef6fbcaf16ef439>]
+2019-02-28T11:45:07 ERROR ServiceApi.py 316 17406 service: [<Service '024c9d8fc0524ff893470987667d6e4d'>, <Service 'ca90402a1d5e491d841d7c7af9b9eb1e'>, <Service 'd6c0e37470d64d09b1f78b05154cfc0f'>]
+2019-02-28T11:45:07 ERROR ServiceApi.py 321 17406 version: [<Version 35ab759266064ff68554ef58aba714e2>]
+2019-02-28T11:45:07 ERROR ServiceApi.py 321 17406 version: [<Version bfbc0d469cb142859a7f2c1aaae58875>]
+2019-02-28T11:45:08 ERROR ServiceApi.py 321 17406 version: [<Version 5130b7edd26d42b88ef6fbcaf16ef439>]
+2019-02-28T11:45:08 ERROR ServiceApi.py 343 17406 flag: False
+2019-02-28T11:53:45 ERROR ServiceApi.py 316 17825 service: [<Service '024c9d8fc0524ff893470987667d6e4d'>, <Service 'ca90402a1d5e491d841d7c7af9b9eb1e'>, <Service 'd6c0e37470d64d09b1f78b05154cfc0f'>]
+2019-02-28T11:53:45 ERROR ServiceApi.py 321 17825 version: [<Version 35ab759266064ff68554ef58aba714e2>]
+2019-02-28T11:53:45 ERROR ServiceApi.py 328 17825 all_server_obj: []
+2019-02-28T11:53:45 ERROR ServiceApi.py 321 17825 version: [<Version bfbc0d469cb142859a7f2c1aaae58875>]
+2019-02-28T11:53:45 ERROR ServiceApi.py 328 17825 all_server_obj: [<ServerVersionRelationship 2461c90360784ebe84b23f0392efc546, bfbc0d469cb142859a7f2c1aaae58875>]
+2019-02-28T11:53:45 ERROR ServiceApi.py 357 17825 'ServerVersionRelationship' object has no attribute 'ip'
+2019-02-28T11:55:50 ERROR ServiceApi.py 316 19300 service: [<Service '024c9d8fc0524ff893470987667d6e4d'>, <Service 'ca90402a1d5e491d841d7c7af9b9eb1e'>, <Service 'd6c0e37470d64d09b1f78b05154cfc0f'>]
+2019-02-28T11:55:50 ERROR ServiceApi.py 321 19300 version: [<Version 35ab759266064ff68554ef58aba714e2>]
+2019-02-28T11:55:50 ERROR ServiceApi.py 328 19300 all_server_obj: []
+2019-02-28T11:55:50 ERROR ServiceApi.py 321 19300 version: [<Version bfbc0d469cb142859a7f2c1aaae58875>]
+2019-02-28T11:55:50 ERROR ServiceApi.py 328 19300 all_server_obj: [<ServerVersionRelationship 2461c90360784ebe84b23f0392efc546, bfbc0d469cb142859a7f2c1aaae58875>]
+2019-02-28T11:55:50 ERROR ServiceApi.py 321 19300 version: [<Version 5130b7edd26d42b88ef6fbcaf16ef439>]
+2019-02-28T11:55:50 ERROR ServiceApi.py 328 19300 all_server_obj: []
+2019-02-28T11:55:50 ERROR ServiceApi.py 345 19300 flag: True
+2019-02-28T17:00:10 ERROR ServiceApi.py 500 31051 'NoneType' object has no attribute 'versions'
